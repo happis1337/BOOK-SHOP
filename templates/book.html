@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }} - Book Store</title>
+    <link rel="stylesheet" href="{% static 'css/book.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Book Store</h1>
+            <nav>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'author_detail' book.author.id %}">Author</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="book-details">
+            <div class="book-image">
+                <img src="{{ book.image }}" alt="{{ book.title }}" />
+            </div>
+            <div class="book-info">
+                <h2>{{ book.title }}</h2>
+                <p><strong>Author:</strong> <a href="{% url 'author_detail' book.author.id %}">{{ book.author.first_name }} {{ book.author.last_name }}</a></p>
+                <p><strong>Genre:</strong> {{ book.genre }}</p>
+                <p><strong>Price:</strong> ${{ book.price }}</p>
+                <p><strong>Published on:</strong> {{ book.publication_date }}</p>
+                <p><strong>Description:</strong> {{ book.description }}</p>
+                <div class="book-actions">
+                    <a href="{% url 'home' %}" class="btn-back">Back to books list</a>
+                    <a href="{% url 'author_detail' book.author.id %}" class="btn-author">More about this author</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Book Store. All rights reserved.</p>
+    </footer>
+</body>
+</html>
